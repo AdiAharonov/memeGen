@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="fully working desktop mobile app">
+    <meta name="keywords" content="memeGen, meme generator">
+    <meta name="autor" content="Adi Aharonov">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memeGen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="init()">
+    <header>
+        <div class="container">
+            <div class="branding">
+                <h1>meme<span class="highlight">G</span>en</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li class="current"><a href="generator.html">Generator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="newsletter">
+        <div class="container">
+            <h1>Subscribe to our page or daily content</h1>
+            <form>
+                <input type="email" placeholder="Enter Email...">
+                <button type="submit" class="button_1">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="screen">
+        <div class="modal">
+            <div class="closeModal" onclick="toggleModal()">+</div>
+            <h3>Insert photo url here:</h3>
+            <input type="url" id="url" placeholder="Enter url...">
+            <button onclick="uploadUrl(this)">Ok</button>
+            <h3>or upload local image:</h3>
+            <input class="file" type="file" accept="image/*" name="image" id="file">
+            <button onclick="uploadUrl(this)">Ok</button>
+        </div>
+    </section>
+
+    <main class="container generatorMain">
+
+        <section class="canvas-container">
+            <canvas id="my-canvas" height="450" width="40vh">
+            </canvas>
+           
+        </section>
+
+        <section class="actions-container">
+            <h2>Create you own memes!</h2>
+
+            <input type="text" class="topText" placeholder="Create top line..." onchange="updateGText()">
+            <input type="text" class="bottomText" placeholder="Create bottom line..." onchange="updateGText()">
+            
+            
+
+            <h3>Resize here:</h3>
+
+            <div class="resizeBtns-container">
+                <img class="inc" src="icons/increase font - icon.png" onclick="resizeText(this)">
+                <img class="dec" src="icons/decrease font - icon.png" onclick="resizeText(this)">
+            </div>
+
+            <h3>Add emojis:</h3>
+
+            <div class="emojis-container">
+               
+            </div>
+        </section>
+    
+     <section class="handlerBtns">
+         <div class="color">
+             <img src="icons/paint-board-and-brush.png">
+             <input type="color" onchange="setColor(this.value)" style="opacity: 0;">
+         </div>
+         
+         
+        <img src="icons/add.png" onclick="toggleModal()">
+             
+         
+        
+        <img src="icons/pen.png" class="pen" onclick="setCanvasToDraw()">
+        
+      
+        <img src="icons/trash.png" onclick="clearCanvas()">
+            
+        <div class="downloadMeme"  >
+            <img src="icons/dwonload-icon.png">
+            <a href="#" onclick="downloadCanvas(this)" download=""></a>
+        </div>
+     </section>
+    </main>
+
+    <footer>
+        <p>memeGen, copyright &copy; </p>
+    </footer>
+
+    <script src="js/generator-service.js"></script>
+    <script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
+    <script src="js/generator-controller.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="js/fabric.js"></script>
+</body>
+</html>

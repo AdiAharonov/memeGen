@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="fully working desktop mobile app">
+    <meta name="keywords" content="memeGen, meme generator">
+    <meta name="autor" content="Adi Aharonov">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>memeGen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body onload="initIndex()">
+    <header>
+        <div class="container">
+            <div class="branding">
+                <h1>meme<span class="highlight">G</span>en</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="index.html">Home</a></li>
+                    <li><a href="generator.html">Generator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="newsletter">
+        <div class="container">
+            <h1>Subscribe to our page or daily content</h1>
+            <form>
+                <input type="email" placeholder="Enter Email...">
+                <button type="submit" class="button_1">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="searchBar">
+            <input type="text" class="searchPhoto" placeholder="Search a photo...">
+            <div class="mostSearchedContainer">
+                <p>Funny</p>
+                <p>Cool</p>
+                <p>animals</p>
+                <p>Comics</p>
+                <p>Books</p>
+            </div>
+        </section>
+        </section>
+          
+        <section class="gallery">
+    
+        </section>
+    </main>
+
+    <footer>
+        <p>memeGen, copyright &copy; </p>
+    </footer>
+
+    <script src="js/generator-service.js"></script>
+    <script src="js/main-service.js"></script>
+    <script src="js/main-controller.js"></script>
+    <script src="js/generator-controller.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</body>
+</html>
