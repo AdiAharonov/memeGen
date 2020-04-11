@@ -50,9 +50,7 @@
     <main class="container generatorMain">
 
         <section class="canvas-container">
-            <canvas id="my-canvas" height="450" width="40vh">
-            </canvas>
-           
+           <canvas id="c" height="500" width="500"></canvas>
         </section>
 
         <section class="actions-container">
@@ -63,11 +61,11 @@
             
             
 
-            <h3>Resize here:</h3>
+            <h3>Drawing brush size:</h3>
 
-            <div class="resizeBtns-container">
-                <img class="inc" src="icons/increase font - icon.png" onclick="resizeText(this)">
-                <img class="dec" src="icons/decrease font - icon.png" onclick="resizeText(this)">
+            <div class="drawMode-options">
+                <span id="brushSize">20</span>
+                <input type="range" class="form-control-range" id="formControlRange" onchange="showNum(this.value);">
             </div>
 
             <h3>Add emojis:</h3>
@@ -86,11 +84,8 @@
          
         <img src="icons/add.png" onclick="toggleModal()">
              
-         
+        <img src="icons/pen.png" class="pen" onclick="toggleDrawMode()">
         
-        <img src="icons/pen.png" class="pen" onclick="setCanvasToDraw()">
-        
-      
         <img src="icons/trash.png" onclick="clearCanvas()">
             
         <div class="downloadMeme"  >
@@ -105,11 +100,11 @@
     </footer>
 
     <script src="js/generator-service.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/fabric.js"></script>
     <script src="js/main-service.js"></script>
     <script src="js/main-controller.js"></script>
     <script src="js/generator-controller.js"></script>
-    <script src="js/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="js/fabric.js"></script>
 </body>
 </html>

@@ -210,7 +210,6 @@ main {
 
 .canvas-container {
     
-    
     width: 49.2%;
     height: 80vh;
     float: left;
@@ -219,9 +218,9 @@ main {
 }
 
 canvas {
-    background-color: #cccccc;
-    display: inline-block;
-    cursor: url('/icons/pen.png');
+   border: #cccccc solid 1px;
+
+    
 }
 
 /* ACTIONS CONTAINER */
@@ -239,10 +238,11 @@ canvas {
     height: 1.5rem;
 }
 
-.resizeBtns-container img {
-    height: 2rem;
-    width: 3rem;
-    margin: 0 2rem;
+.drawMode-options {
+    margin: 0;
+    height: 2.5rem;
+    width: 100%;
+    
 }
 
 .emojis-container {

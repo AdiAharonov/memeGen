@@ -23,7 +23,7 @@ function init() {
   if (gPhoto) {
     gCanvas.setBackgroundImage(gPhoto, gCanvas.renderAll.bind(gCanvas), {
       backgroundImageOpacity: 0.5,
-      backgroundImageStretch: true
+      backgroundImageStretch: false
   });
   }
 
@@ -38,6 +38,80 @@ function init() {
   
 }
 
+// function setCanvasToDraw() {
+
+//     if (!drawMode) {
+//         gCanvas.addEventListener("mousemove", getEventMove, false);
+//         gCanvas.addEventListener("mousedown", getEventDown, false);
+//         gCanvas.addEventListener("mouseup", getEventUp, false);
+//         gCanvas.addEventListener("mouseout", getEventOut, false);
+//         drawMode = true;
+//     } 
+//     else {
+//         gCanvas.removeEventListener("mousemove", getEventMove);
+//         gCanvas.removeEventListener("mousedown", getEventDown);
+//         gCanvas.removeEventListener("mouseup", getEventUp);
+//         gCanvas.removeEventListener("mouseout", getEventOut);
+//         drawMode = false;
+//     }
+// }
+
+// const getEventMove = (e) => {
+//     findxy('move', e)
+// }
+// const getEventDown = (e) => {
+//     findxy('down', e)
+// }
+// const getEventUp = (e) => {
+//     findxy('up', e)
+// }
+// const getEventOut = (e) => {
+//     findxy('out', e)
+// }
+
+
+
+// function draw() {
+// gCtx.beginPath();
+// gCtx.moveTo(prevX, prevY);
+// gCtx.lineTo(currX, currY);
+// gCtx.strokeStyle = gColor;
+// gCtx.lineWidth = y;
+// gCtx.stroke();
+// gCtx.closePath();
+// }
+
+
+// function findxy(res, e) {
+// if (res == 'down') {
+//     prevX = currX;
+//     prevY = currY;
+//     currX = e.offsetX;
+//     currY = e.offsetY;
+
+//     flag = true;
+//     dot_flag = true;
+//     if (dot_flag) {
+//         gCtx.beginPath();
+//         gCtx.fillStyle = gColor;
+//         gCtx.fillRect(currX, currY, 2, 2);
+//         gCtx.closePath();
+//         dot_flag = false;
+//     }
+// }
+// if (res == 'up' || res == "out") {
+//     flag = false;
+// }
+// if (res == 'move') {
+//     if (flag) {
+//         prevX = currX;
+//         prevY = currY;
+//         currX = e.offsetX;
+//         currY = e.offsetY;
+//         draw();
+//     }
+// }
+// }
 
 function uploadUrl(el) {
     const urlVal = $('#url').val();
@@ -126,37 +200,49 @@ function setColor(color) {
  }
 
 function updateGText() {
-  
+  clearCanvas();
+  gCanvas.setBackgroundImage(gPhoto, gCanvas.renderAll.bind(gCanvas), {
+    backgroundImageOpacity: 0.5,
+    backgroundImageStretch: false
+});
 
+let gTextTop = document.querySelector('.topText').value;
+let gTextBottom = document.querySelector('.bottomText').value;
 
-let gTextTop = document.querySelector('.topText');
-let gTextBottom = document.querySelector('.bottomText');
-
-var textTop = new fabric.Text(gTextTop.value, {
+var textTop = new fabric.Text(gTextTop, {
   left: gCanvas.width/4,
   top: gCanvas.height/4,
-  fontSize: 30,
+  fontSize: `${gFontSize}`,
   fontFamily: 'Verdana',
   fill: `${gColor}`
 });
 
-var textBottom = new fabric.Text(gTextBottom.value, {
+var textBottom = new fabric.Text(gTextBottom, {
   left: gCanvas.width/4,
   top: (gCanvas.height * 3) / 4,
-  fontSize: 30,
+  fontSize: `${gFontSize}`,
   fontFamily: 'Verdana',
   fill: `${gColor}`
 });
   
   gCtx.textAlign = "center";
   gCanvas.add(textTop, textBottom);
-  
-  gTextTop.value = "";
-  gTextBottom.value = "";
-   
+    
 }
 
 
+
+
+function resizeText(el) {
+  if ($(el).attr("class") === 'inc') {
+  gFontSize += 4;
+  updateGText()
+}
+else if ($(el).attr("class") === 'dec') {
+  gFontSize -= 4;
+  updateGText()
+}
+}
 
 function getEmoji(el) {
 drawImg1(el);
@@ -167,18 +253,9 @@ drawImg1(el);
 
 // Draw mode
 
-function toggleDrawMode() {
-  if (!drawMode) {
-    gCanvas.isDrawingMode= 1;
-    gCanvas.freeDrawingBrush.color = gColor;
-    gCanvas.freeDrawingBrush.width = 5;
-    gCanvas.renderAll();
-    drawMode = true;
-  }
-  else {
-    gCanvas.isDrawingMode= 0;
-    gCanvas.renderAll();
-    drawMode =  false;
-  }
+function () {
+  gCanvas.isDrawingMode= 1;
+  gCanvas.freeDrawingBrush.color = gColor;
+  gCanvas.freeDrawingBrush.width = 5;
+  gCanvas.renderAll();
 };
-
