@@ -79,6 +79,10 @@ img {
     border: rgb(218, 218, 218) solid 1px;
 }
 
+.modal input {
+    height: 1.5rem;
+    width: 80%;
+}
 
 /* Header*/
 
@@ -198,6 +202,10 @@ main {
     grid-row-gap: 1.5rem;
     
 }
+.gallery img {
+    
+    
+}
 
 
 /* GENERATOR*/
@@ -239,10 +247,13 @@ canvas {
 }
 
 .drawMode-options {
-    margin: 0;
     height: 2.5rem;
     width: 100%;
+    font-weight: bold;
     
+}
+.drawMode-options input {
+    margin: 0 auto;
 }
 
 .emojis-container {
@@ -284,7 +295,7 @@ canvas {
 }
 
 .handlerBtns .color img {
- 
+    border-radius: 30px;
     position: absolute;
 }
 .handlerBtns .color input {

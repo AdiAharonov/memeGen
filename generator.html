@@ -65,7 +65,7 @@
 
             <div class="drawMode-options">
                 <span id="brushSize">20</span>
-                <input type="range" class="form-control-range" id="formControlRange" onchange="showNum(this.value);">
+                <input type="range" id="formControlRange" min="1" max="80" value="20" onmousemove="showNum(this.value);">
             </div>
 
             <h3>Add emojis:</h3>
@@ -77,7 +77,7 @@
     
      <section class="handlerBtns">
          <div class="color">
-             <img src="icons/paint-board-and-brush.png">
+             <img class="color-icon" src="icons/paint-board-and-brush.png" >
              <input type="color" onchange="setColor(this.value)" style="opacity: 0;">
          </div>
          

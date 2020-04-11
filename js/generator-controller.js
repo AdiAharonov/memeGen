@@ -3,6 +3,7 @@ var gCtx = gCanvas.getContext('2d');
 let gColor = 'black';
 let gPhoto;
 let drawMode = false;
+let gBrushSize = 20;
 var flag = false,
 prevX = 0,
 currX = 0,
@@ -11,20 +12,19 @@ currY = 0,
 dot_flag = false;
 
 var y = 2;
-
 let gFontSize = 30;
 
-
-
 function init() {
-  
  gPhoto = localStorage.getItem('newMeme');
  
   if (gPhoto) {
     gCanvas.setBackgroundImage(gPhoto, gCanvas.renderAll.bind(gCanvas), {
-      backgroundImageOpacity: 0.5,
-      backgroundImageStretch: true
+      width: gCanvas.width,
+      height: gCanvas.height,
+      originX: 'left',
+      originY: 'top'
   });
+  
   }
 
   resizeCanvas();
@@ -32,13 +32,15 @@ function init() {
   window.addEventListener('resize', () => {
     gCanvas.width = window.innerWidth * 0.8;
     gCanvas.height = window.innerHeight * 0.8;
+    gCanvas.backgroundImage.width = window.innerWidth * 0.8;
+    gCanvas.backgroundImage.height = window.innerHeight * 0.8;
   });
 
   renderEmojis();
   
 }
 
-
+// upload image
 function uploadUrl(el) {
     const urlVal = $('#url').val();
     const fileVal = $('#file').val();
@@ -105,18 +107,20 @@ function resizeCanvas() {
   gCanvas.height = elContainer.offsetHeight;
 }
 
-function downloadCanvas(elLink) {
-  const data = gCanvas.toDataURL();
-  elLink.href = data;
-  elLink.download = 'my-img.jpg';
-}
+// download image
+function downloadCanvas(el) {
+  var image = gCanvas.toDataURL("image/png");
+  el.href = image;
+};
 
-
+// update color
 function setColor(color) { 
+  $('.color-icon').css("background", `linear-gradient(124deg, ${color} 42%, rgba(255,255,255,1) 68%)`);
     gColor = color;
+    gCanvas.freeDrawingBrush.color = gColor;
  }
 
- function renderEmojis() {
+function renderEmojis() {
      const emojisContainer = document.querySelector('.emojis-container');
      const emojis = getEmojis();
 
@@ -125,10 +129,9 @@ function setColor(color) {
      })
  }
 
+ // update text on canvas
+
 function updateGText() {
-  
-
-
 let gTextTop = document.querySelector('.topText');
 let gTextBottom = document.querySelector('.bottomText');
 
@@ -160,9 +163,7 @@ var textBottom = new fabric.Text(gTextBottom.value, {
 
 function getEmoji(el) {
 drawImg1(el);
-
 }
-
 
 
 // Draw mode
@@ -171,7 +172,7 @@ function toggleDrawMode() {
   if (!drawMode) {
     gCanvas.isDrawingMode= 1;
     gCanvas.freeDrawingBrush.color = gColor;
-    gCanvas.freeDrawingBrush.width = 5;
+    gCanvas.freeDrawingBrush.width = gBrushSize;
     gCanvas.renderAll();
     drawMode = true;
   }
@@ -182,3 +183,10 @@ function toggleDrawMode() {
   }
 };
 
+// update pesented num on screen and brush size
+function showNum(value) {
+  gBrushSize = value;
+  $('#brushSize').text(gBrushSize);
+  gCanvas.freeDrawingBrush.width = gBrushSize;
+  gCanvas.renderAll();
+}

@@ -1,3 +1,4 @@
+const gallery = document.querySelector('.gallery');
 
 
 
@@ -6,10 +7,11 @@ renderPhotos();
 }
 
 function renderPhotos() {
+    gallery.innerHTML = "";
     const photos = getPhotos();
-    const gallery = document.querySelector('.gallery');
     photos.forEach(photo => {
-        gallery.innerHTML += `<img src="meme-imgs (square)/${photo.id}.jpg" onclick="getPhoto(this)">`  
+
+        gallery.innerHTML += `<img src="${photo.src}" onclick="getPhoto(this)">`  
     }); 
 }
 
@@ -37,3 +39,31 @@ function toggleModal() {
 
 }
 
+
+function ShowMatches(value) {
+    const matched = searchPhotoInData(value);
+    gallery.innerHTML = "";
+    matched.forEach(match => gallery.innerHTML += `<img src="meme-imgs (square)/${match.id}.jpg" onclick="getPhoto(this)">`)
+}
+
+
+// upload image
+function uploadToGallery() {
+    const urlVal = $('#url').val();
+    const fileVal = $('#file').val();
+    const desc = $('descriptiom').val();
+    
+    if (urlVal !== "" || fileVal !== "") {
+        if (urlVal !== "") {
+        addPhotoToData(desc, urlVal);
+        } 
+        if (fileVal !== "") {
+        addPhotoToData(desc, fileVal);
+       }
+       
+       renderPhotos();
+       toggleModal();
+    }
+    else return
+    
+}

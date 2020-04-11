@@ -25,6 +25,20 @@
         </div>
     </header>
 
+    <section class="screen">
+        <div class="modal" style="height: 55vh;">
+            <div class="closeModal" onclick="toggleModal()">+</div>
+            <h3>Insert photo url here:</h3>
+            <input type="url" id="url" placeholder="Enter url...">
+            <button onclick="uploadToGallery(this)">Ok</button>
+            <h3>or upload local image:</h3>
+            <input class="file" type="file" accept="image/*" name="image" id="file">
+            <button onclick="uploadToGallery(this)">Ok</button>
+            <h3>Add description:</h3>
+            <input type="text" id="description" placeholder="Enter few words to describe the meme...">
+        </div>
+    </section>
+
     <section class="newsletter">
         <div class="container">
             <h1>Subscribe to our page or daily content</h1>
@@ -37,13 +51,13 @@
 
     <main class="container">
         <section class="searchBar">
-            <input type="text" class="searchPhoto" placeholder="Search a photo...">
+            <input type="text" class="searchPhoto" placeholder="Search a photo..." onchange="ShowMatches(this.value)">
             <div class="mostSearchedContainer">
                 <p>Funny</p>
                 <p>Cool</p>
                 <p>animals</p>
                 <p>Comics</p>
-                <p>Books</p>
+                <p style="color: blue; font-weight: bold; cursor: pointer;" onclick="toggleModal()">Add Photo</p>
             </div>
         </section>
         </section>
@@ -60,9 +74,8 @@
     <script src="js/generator-service.js"></script>
     <script src="js/main-service.js"></script>
     <script src="js/main-controller.js"></script>
-    <script src="js/generator-controller.js"></script>
+    <!-- <script src="js/generator-controller.js"></script> -->
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
