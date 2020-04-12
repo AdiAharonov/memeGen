@@ -4,15 +4,7 @@ let gColor = 'black';
 let gPhoto;
 let drawMode = false;
 let gBrushSize = 20;
-var flag = false,
-prevX = 0,
-currX = 0,
-prevY = 0,
-currY = 0,
-dot_flag = false;
-
-var y = 2;
-let gFontSize = 30;
+ 
 
 function init() {
  gPhoto = localStorage.getItem('newMeme');
@@ -160,6 +152,7 @@ var textBottom = new fabric.Text(gTextBottom.value, {
 }
 
 
+//Draw emoji
 
 function getEmoji(el) {
 drawImg1(el);
@@ -183,7 +176,7 @@ function toggleDrawMode() {
   }
 };
 
-// update pesented num on screen and brush size
+// update presented num on screen and brush size
 function showNum(value) {
   gBrushSize = value;
   $('#brushSize').text(gBrushSize);
